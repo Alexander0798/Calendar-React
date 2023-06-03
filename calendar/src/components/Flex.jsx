@@ -8,7 +8,9 @@ const StyledFlex = styled.div`
     margin: ${({ margin }) => margin || '0'};
     padding: ${({ padding }) => padding || '0'};
     gap: ${({ gap }) => gap || '0'};
-    height: 100%;
+    height: ${({ height }) => height || '100%'};
+    width: ${({ height }) => height || '100%'};
+
 `;
 const Flex = (props) => {
     return <StyledFlex {...props} />;
