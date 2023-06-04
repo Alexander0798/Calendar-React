@@ -8,11 +8,17 @@ const StyledButton = styled.button`
     height: ${({ height }) => height || "1.5rem"};
     transform: ${({ rotate }) => "rotate(" + rotate + "deg)" || "none"};
     background-image: ${({ img }) => (img ? "url(" + img + ")" : "none")};
+    color: ${({ color }) => color || "black;"};
+    font-size: ${({ size }) => size || "1rem;"};
+    font-weight: ${({ weight }) => weight || "400"};
+    border-top: ${({ borderTop }) => borderTop || "none"};
+    border-bottom: ${({ borderBottom }) => borderBottom || "none"};
+    border-right: ${({ borderRight }) => borderRight || "none"};
+    border-left: ${({ borderLeft }) => borderLeft || "none"};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    border: none;
     &:focus {
         outline: none;
     }

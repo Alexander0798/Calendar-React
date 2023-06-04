@@ -9,16 +9,25 @@ const StyledQuantity = styled.div`
     line-height: 2;
     font-weight: 700;
     font-size: 1.6rem;
+    cursor: pointer;
 
+    ${({ green }) =>
+        green &&
+        `
+border-radius: 50%;
+background-color: green;
+color: #fff;
 
+`}
     ${({ active }) =>
         active &&
         `
   border-radius: 50%;
   background-color: red;
   color: #fff;
+  
 `}
-
+ 
     @media (max-width: 600px) {
         width: 2.3rem;
         height: 2.3rem;
