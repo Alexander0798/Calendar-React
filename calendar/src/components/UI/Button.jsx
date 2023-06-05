@@ -4,8 +4,8 @@ const StyledButton = styled.button`
     background: ${({ background }) => background || "transparent"};
     padding: ${({ padding }) => padding || "0"};
     margin: ${({ margin }) => margin || "0"};
-    width: ${({ width }) => width || "1.5rem"};
-    height: ${({ height }) => height || "1.5rem"};
+    width: ${({ width }) => width || "none"};
+    min-height: ${({ height }) => height || "1.5rem"};
     transform: ${({ rotate }) => "rotate(" + rotate + "deg)" || "none"};
     background-image: ${({ img }) => (img ? "url(" + img + ")" : "none")};
     color: ${({ color }) => color || "black;"};
@@ -22,6 +22,15 @@ const StyledButton = styled.button`
     &:focus {
         outline: none;
     }
+    @media (min-width: 30em) {
+        font-size: ${({ sizeMd }) => sizeMd || "1rem"};
+    }
+    ${({ disabled }) =>
+        disabled &&
+        `
+    color: #ccc;
+    cursor: not-allowed;
+`}
 `;
 const Button = (props) => {
     return <StyledButton {...props} />;

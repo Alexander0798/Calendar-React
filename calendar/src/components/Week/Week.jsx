@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import Time from "./Time";
 const StyledWeek = styled.main`
-    height: 21rem;
     overflow-y: scroll;
     background: ${(props) => props.background || props.theme.calendarTimeColor};
+    &::-webkit-scrollbar {
+        width: 0.1rem;
+    }
 `;
 const Week = (props) => {
     const hours = Array.from(Array(13), (_, index) => index + 8);

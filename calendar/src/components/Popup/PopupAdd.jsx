@@ -6,27 +6,20 @@ const StyledPopupAdd = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
-    background: ${(props) => props.background || props.theme.popupBg};
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    max-width: 282px;
-    color: black;
-    box-sizing: border-box;
+    font-size: 1.25rem;
+    background: ${(props) => props.background || props.theme.formBg};
+    box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.625rem;
     z-index: 100;
-    transition: all 0.22s ease-in;
+   
 
-    @media (min-width: 500px) {
-        max-width: 430px;
-        margin: 0;
-    }
 `;
 const PopupAdd = (props) => {
     if (props.selected) {
         return (
             <>
                 <StyledPopupAdd {...props}>
-                    <Form></Form>
+                    <Form {...props}></Form>
                 </StyledPopupAdd>
                 <BackDrop onClick={props.togglePopup} />
             </>

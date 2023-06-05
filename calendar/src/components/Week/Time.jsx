@@ -7,7 +7,7 @@ const StyledTime = styled.div`
 `;
 const StyledTimeOfDay = styled.div`
     border-right: ${({ borderRight }) => borderRight || "2px solid #cccc"};
-    border-bottom: ${({ borderBottom }) => borderBottom || "2px solid #cccc"}; 
+    border-bottom: ${({ borderBottom }) => borderBottom || "2px solid #cccc"};
     height: 100%;
     width: 100%;
     cursor: pointer;
@@ -15,9 +15,19 @@ const StyledTimeOfDay = styled.div`
 const TimeValue = styled.div`
     align-self: start;
     justify-self: end;
-    margin: -0.8rem 0.5rem 0 0;
-    font-size: 1.5rem;
+    margin: -0.5rem 0.2rem 0 0;
+    font-size: .8rem;
     color: #cccc;
+    font-weight: 700;   
+
+    @media (min-width: 390px) {
+        margin: -0.6rem 0.3rem 0 0;
+        font-size: 1rem;
+    }
+    @media (min-width: 600px) {
+        font-size: 1.5rem;
+        margin: -0.8rem 0.5rem 0 0;
+    }
 `;
 const Time = (props) => {
     const startOfWeek = moment(props.date).startOf("isoWeek");

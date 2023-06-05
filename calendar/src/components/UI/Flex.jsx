@@ -11,6 +11,10 @@ const StyledFlex = styled.div`
     height: ${({ height }) => height || '100%'};
     width: ${({ height }) => height || '100%'};
 
+    @media (min-width: 30em) {
+        ${({paddingMd}) => `padding: ${paddingMd}`} 
+    }
+
 `;
 const Flex = (props) => {
     return <StyledFlex {...props} />;

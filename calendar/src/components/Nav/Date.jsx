@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledQuantity = styled.div`
+const StyledDate = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,28 +14,28 @@ const StyledQuantity = styled.div`
     ${({ green }) =>
         green &&
         `
-border-radius: 50%;
-background-color: green;
-color: #fff;
+    border-radius: 50%;
+    background-color: green;
+    color: #fff;
 
 `}
     ${({ active }) =>
         active &&
         `
-  border-radius: 50%;
-  background-color: red;
-  color: #fff;
+    border-radius: 50%;
+    background-color: red;
+    color: #fff;
   
 `}
  
-    @media (max-width: 600px) {
-        width: 2.3rem;
-        height: 2.3rem;
+    @media (max-width: 37.5em) {
+        width: 2rem;
+        height: 2rem;
         line-height: 1;
         font-size: 1.2rem;
     }
 `;
-const Quantity = (props) => {
-    return <StyledQuantity {...props} />;
+const Date = (props) => {
+    return <StyledDate {...props} />;
 };
-export default Quantity;
+export default Date;

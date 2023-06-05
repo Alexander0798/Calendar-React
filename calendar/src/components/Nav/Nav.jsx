@@ -1,25 +1,24 @@
 import styled from "styled-components";
 import moment from "moment/moment";
-import Quantity from "./Quantity";
+import Date from "./Date";
 import Flex from "../UI/Flex";
 import Button from "../UI/Button";
 import imgArrow from "../../image/svg/arrow.svg";
 import SubTitle from "../UI/SubTitle";
+import DateOfWeek from "./DateOfWeek";
 const StyledNav = styled.nav`
     background: ${(props) => props.background || props.theme.calendarNavBg};
-    min-height: 6, 25rem;
     display: flex;
     gap: 0.6rem;
     flex-direction: column;
     align-items: flex-end;
-    padding: 0.6rem 1rem 0.6rem 6rem;
 
-    @media (max-width: 600px) {
-        padding: 0.6rem 0.6rem 0.6rem 4.5rem;
+    padding: 0.6rem 0.6rem 0.6rem 3.2rem;
+    @media (min-width: 24.375em) {
+        padding: 0.6rem 0.6rem 0.6rem 3.4rem;
     }
-
-    @media (max-width: 400px) {
-        padding: 0.6rem 0.6rem 0.6rem 3.5rem;
+    @media (min-width: 37.5em) {
+        padding: 0.6rem 1rem 0.6rem 5.5rem;
     }
 `;
 
@@ -33,17 +32,17 @@ const Nav = (props) => {
     while (day <= endOfWeek) {
         days.push(
             <Flex direction="column" justify="start" align="center" key={day}>
-                <Flex justify="center" align="center" margin="0 0 .62rem">
+                <DateOfWeek justify="center" align="center" margin="0 0 .62rem">
                     {day.format("dd")[0]}
-                </Flex>
-                <Quantity
+                </DateOfWeek>
+                <Date
                     active={moment().isSame(day, "day")}
                     green={Boolean(props.date.format("DD-YY-MM") === day.format("DD-YY-MM"))}
                     onClick={props.changeDay}
                     data-date={day.toISOString()}
                 >
                     {day.date()}
-                </Quantity>
+                </Date>
             </Flex>
         );
 
@@ -54,10 +53,10 @@ const Nav = (props) => {
         <StyledNav {...props}>
             <Flex direction="column">
                 <Flex>{days}</Flex>
-                <Flex justify="space-between" align="center" padding="1rem 1.6rem 0 1.6rem;">
-                    <Button img={imgArrow} rotate="180" onClick={props.prevWeek} />
+                <Flex justify="space-between" align="center" padding=".625rem 1.6rem 0 1.6rem;" paddingMd="1rem 1.6rem 0 1.6rem;">
+                    <Button img={imgArrow} rotate="180" onClick={props.prevWeek} width="1.5rem;" height="1.5rem;" />
                     <SubTitle>{props.date.format("MMMM YYYY")}</SubTitle>
-                    <Button img={imgArrow} onClick={props.nextWeek} />
+                    <Button img={imgArrow} onClick={props.nextWeek} width="1.5rem;" height="1.5rem;" />
                 </Flex>
             </Flex>
         </StyledNav>
