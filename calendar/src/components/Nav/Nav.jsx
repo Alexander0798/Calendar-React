@@ -38,7 +38,7 @@ const Nav = (props) => {
                 <Date
                     active={moment().isSame(day, "day")}
                     green={Boolean(props.date.format("DD-YY-MM") === day.format("DD-YY-MM"))}
-                    onClick={props.changeDay}
+                    onClick={props.changeDayHandler}
                     data-date={day.toISOString()}
                 >
                     {day.date()}
@@ -54,9 +54,9 @@ const Nav = (props) => {
             <Flex direction="column">
                 <Flex>{days}</Flex>
                 <Flex justify="space-between" align="center" padding=".625rem 1.6rem 0 1.6rem;" paddingMd="1rem 1.6rem 0 1.6rem;">
-                    <Button img={imgArrow} rotate="180" onClick={props.prevWeek} width="1.5rem;" height="1.5rem;" />
+                    <Button img={imgArrow} rotate="180" onClick={props.prevWeekHandler} width="1.5rem;" height="1.5rem;" />
                     <SubTitle>{props.date.format("MMMM YYYY")}</SubTitle>
-                    <Button img={imgArrow} onClick={props.nextWeek} width="1.5rem;" height="1.5rem;" />
+                    <Button img={imgArrow} onClick={props.nextWeekHandler} width="1.5rem;" height="1.5rem;" />
                 </Flex>
             </Flex>
         </StyledNav>

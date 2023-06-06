@@ -25,7 +25,8 @@ function App() {
     const [dateDirty, setDateDirty] = useState(false);
     const [dateError, setDateError] = useState("The date cannot be empty");
     const [formValid, setFormValid] = useState(false);
-
+    const [savedDates, setSavedDates] = useState([]);
+    const [deletedDate, setDeletedDate] = useState("");
     useEffect(() => {
         if (dateError) {
             setFormValid(false);
@@ -33,10 +34,14 @@ function App() {
             setFormValid(true);
         }
     }, [dateError]);
+    useEffect(() => {
+        console.log(savedDates);
+    }, [savedDates]);
 
     const dateHandler = (evt) => {
         setDate(evt.target.value);
         if (!moment(evt.target.value, "YYYY-MM-DD HH:mm", true).isValid()) {
+            setDateDirty(true);
             setDateError("the date is not valid");
         } else {
             setDateError("");
@@ -44,46 +49,65 @@ function App() {
     };
     const blurHandler = (evt) => {
         if (evt.target.name === "inputDate") {
-            setDateDirty(true);
+            return setDateDirty(true);
         }
     };
-    const getCurrentDate = () => {
+    const currentDateHandler = () => {
         return setState({
             date: moment(),
         });
     };
-    const changeDay = (evt) => {
+    const changeDayHandler = (evt) => {
         return setState({
             date: moment(evt.target.getAttribute("data-date")),
         });
     };
 
-    const prevWeek = () => {
+    const prevWeekHandler = () => {
         return setState({
             date: state.date.subtract(1, "weeks"),
         });
     };
 
-    const nextWeek = () => {
+    const nextWeekHandler = () => {
         return setState({
             date: state.date.add(1, "weeks"),
         });
     };
-    const handleTimeClick = (evt) => {
-        console.log(evt.target.getAttribute("data-value"));
+    const timeWeekHandler = (evt) => {
+        const result = savedDates.find((date) => date === evt.target.getAttribute("data-value"));
+        console.log(result);
+        if (result) {
+            return setDeletedDate(evt.target.getAttribute("data-value"));
+        } else {
+            setDeletedDate("");
+        }
     };
 
-    const togglePopup = () => {
+    const popupHandler = () => {
         setSelected(!selected);
+        setDate("");
+        setDateError("The date cannot be empty");
+        setDateDirty(false);
     };
-
+    const deletedHandler = () => {
+        setSavedDates(savedDates.filter((date) => date !== deletedDate));
+        return setDeletedDate("");
+    };
+    const submitHandler = (evt) => {
+        evt.preventDefault();
+        const convertDate = moment(date.slice(0, date.length - 2) + "00").toISOString();
+        setSavedDates([...savedDates, convertDate]);
+        popupHandler();
+    };
     return (
         <StyledApp>
-            <Header togglePopup={togglePopup} />
-            <Nav date={state.date} changeDay={changeDay} prevWeek={prevWeek} nextWeek={nextWeek} />
-            <Week date={state.date} handleTimeClick={handleTimeClick} />
-            <Footer handleClick={getCurrentDate}></Footer>
+            <Header popupHandler={popupHandler} />
+            <Nav date={state.date} changeDayHandler={changeDayHandler} prevWeekHandler={prevWeekHandler} nextWeekHandler={nextWeekHandler} />
+            <Week date={state.date} savedDates={savedDates} timeWeekHandler={timeWeekHandler} deletedDate={deletedDate} />
+            <Footer currentDateHandler={currentDateHandler} deletedDate={deletedDate} deletedHandler={deletedHandler}></Footer>
             <PopupAdd
+                submitHandler={submitHandler}
                 formValid={formValid}
                 dateHandler={dateHandler}
                 date={date}
@@ -91,7 +115,7 @@ function App() {
                 dateDirty={dateDirty}
                 blurHandler={blurHandler}
                 selected={selected}
-                togglePopup={togglePopup}
+                popupHandler={popupHandler}
             ></PopupAdd>
         </StyledApp>
     );

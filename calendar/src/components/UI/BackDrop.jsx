@@ -10,6 +10,6 @@ const StyledBackDrop = styled.div`
     background: rgba(0, 0, 0, 0.6);
 `;
 const BackDrop = (props) => {
-    return <StyledBackDrop {...props}/>
-}
-export default BackDrop
+    return <StyledBackDrop {...props} />;
+};
+export default BackDrop;

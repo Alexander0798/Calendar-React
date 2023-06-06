@@ -4,4 +4,4 @@ const Description = (props) => {
     return <StyledDescription {...props} />;
 };
 
-export default Description
+export default Description;

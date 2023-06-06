@@ -11,8 +11,6 @@ const StyledPopupAdd = styled.div`
     box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 0.15);
     border-radius: 0.625rem;
     z-index: 100;
-   
-
 `;
 const PopupAdd = (props) => {
     if (props.selected) {
@@ -21,7 +19,7 @@ const PopupAdd = (props) => {
                 <StyledPopupAdd {...props}>
                     <Form {...props}></Form>
                 </StyledPopupAdd>
-                <BackDrop onClick={props.togglePopup} />
+                <BackDrop onClick={props.popupHandler} />
             </>
         );
     }

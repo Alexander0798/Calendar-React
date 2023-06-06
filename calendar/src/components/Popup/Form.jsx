@@ -12,9 +12,9 @@ const StyledForm = styled.form`
 `;
 const Form = (props) => {
     return (
-        <StyledForm {...props}>
+        <StyledForm {...props} onSubmit={props.submitHandler}>
             <Flex direction="column" align="center" justify="center" gap=".62rem 0">
-                <SubTitle>https://caledar.com</SubTitle>
+                <SubTitle>https://calendar.com</SubTitle>
                 <Description>
                     Enter event time: <br /> YYYY-MM-DD HH:mm
                 </Description>
@@ -39,7 +39,7 @@ const Form = (props) => {
                         width="9rem"
                         borderTop="0.062rem solid #000"
                         borderRight="0.062rem solid #000"
-                        onClick={props.togglePopup}
+                        onClick={props.popupHandler}
                     >
                         Cancel
                     </Button>

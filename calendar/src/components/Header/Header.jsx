@@ -17,7 +17,7 @@ const Header = (props) => {
         <StyledHeader {...props}>
             <Flex justify="space-between" align="center" padding="0 1.5rem 0">
                 <Title>Interview Calendar</Title>
-                <Button img={imgAdd} onClick={props.togglePopup} width="1.5rem;" height="1.5rem;" />
+                <Button img={imgAdd} onClick={props.popupHandler} width="1.5rem;" height="1.5rem;" />
             </Flex>
         </StyledHeader>
     );
